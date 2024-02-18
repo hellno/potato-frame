@@ -12,11 +12,6 @@ import {
 import Link from "next/link";
 import { DEBUG_HUB_OPTIONS } from "./debug/constants";
 
-type GameState = {
-  users: string[];
-  roundEndTime?: number;
-  potatoHolder?: string;
-};
 type CastId = string;
 type State = Record<CastId, GameState>; 
 
