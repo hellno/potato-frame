@@ -12,12 +12,18 @@ import {
 import Link from "next/link";
 import { DEBUG_HUB_OPTIONS } from "./debug/constants";
 
-type State = {
-  active: string;
-  total_button_presses: number;
+type GameState = {
+  users: string[];
+  roundEndTime?: number;
+  potatoHolder?: string;
 };
+type CastId = string;
+type State = Record<CastId, GameState>; 
 
-const initialState = { active: "1", total_button_presses: 0 };
+const initialGameState: GameState = {
+  users: [],
+};
+const initialState: State = {};
 
 const reducer: FrameReducer<State> = (state, action) => {
   return {
@@ -97,13 +103,7 @@ export default async function Home({
         </FrameImage>
         <FrameInput text="put some text here" />
         <FrameButton>
-          {state?.active === "1" ? "Active" : "Inactive"}
-        </FrameButton>
-        <FrameButton>
-          {state?.active === "2" ? "Active" : "Inactive"}
-        </FrameButton>
-        <FrameButton action="link" target={`https://www.google.com`}>
-          External
+          Join Game
         </FrameButton>
       </FrameContainer>
     </div>
