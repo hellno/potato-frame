@@ -88,15 +88,3 @@ export async function addPlayer(gameId: string, userId: string): Promise<void> {
 }
 
 
-export async function setGameState(gameId: string, gameState: GameState): Promise<void> {
-  if (!url || !token) {
-    throw new Error("Missing GAMES_REST_API_URL or GAMES_REST_API_TOKEN");
-  }
-  const games = createClient({
-  url,
-    token
-})
-  await games.set(gameId, gameState);
-}
-
-

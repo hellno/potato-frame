@@ -13,13 +13,9 @@ import Link from "next/link";
 import { DEBUG_HUB_OPTIONS } from "./debug/constants";
 import { GameState } from "./gamestate";
 
-type CastId = string;
-type State = Record<CastId, GameState>; 
-
 const initialGameState: GameState = {
   users: [],
 };
-const initialState: State = {};
 
 const reducer: FrameReducer<State> = (state, action) => {
   return {
@@ -35,7 +31,7 @@ export default async function Home({
   params,
   searchParams,
 }: NextServerPageProps) {
-  const previousFrame = getPreviousFrame<State>(searchParams);
+  const previousFrame = getPreviousFrame<GameState>(searchParams);
 
   const frameMessage = await getFrameMessage(previousFrame.postBody, {
     ...DEBUG_HUB_OPTIONS,
@@ -45,7 +41,7 @@ export default async function Home({
     throw new Error("Invalid frame payload");
   }
 
-  const [state, dispatch] = useFramesReducer<State>(
+  const [state, dispatch] = useFramesReducer<GameState>(
     reducer,
     initialState,
     previousFrame
