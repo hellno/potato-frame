@@ -11,6 +11,7 @@ import {
 } from "frames.js/next/server";
 import Link from "next/link";
 import { DEBUG_HUB_OPTIONS } from "./debug/constants";
+import { GameState } from "./gamestate";
 
 type CastId = string;
 type State = Record<CastId, GameState>; 
